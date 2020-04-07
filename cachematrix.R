@@ -23,7 +23,7 @@ makeCacheMatrix<-function(x = matrix()) {  ## set matrix as argument default
         }
         ## define get to return matrix x
         get <- function() x 
-        ## define setinv as inverse, 
+        ## define setinv as inverse
         setinv <- function(inverse) inv <<- inverse 
         ## define getinv to retrieve the value of inv
         getinv <- function() inv 
@@ -37,19 +37,19 @@ makeCacheMatrix<-function(x = matrix()) {  ## set matrix as argument default
 ## Write a short comment describing this function
 ## cacheSolve uses the information within makeCacheMatrix and the solve function
 ## to calculate the inverse of a given matrix. It checks if the matrix's
-## inverse has already been calculated and cached and retrieves its value.
+## inverse has already been calculated and cached and retrieves that value.
 ## Otherwise, cacheSolve calculates the inverse of the matrix with the solve
 ## function and returns its value.
 
 cacheSolve<-function(x,...) {
-        ##set inv as the get inverse function of x
+        ##set inv as the getinv function of x
         inv <- x$getinv()
         ##if inv cached, send message and retrieve cached value
         if(!is.null(inv)) {
                 message("getting cached data")
                 return(inv)
         }
-        ##if inv not cached, calculate inverse of a with solve and set as inv
+        ##if inv not cached, calculate inverse of x with solve and set as inv
         data1 <- x$get()
         inv <- solve(data1, ...)
         x$setinv(inv)
